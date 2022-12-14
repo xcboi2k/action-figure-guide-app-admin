@@ -1,9 +1,9 @@
 import React from 'react'
 
-const pageBA20132014 = () => {
+const PageBA20132014 = () => {
   return (
-    <div>pageBA20132014</div>
+    <div>pageBA20142015</div>
   )
 }
 
-export default pageBA20132014
+export default PageBA20132014

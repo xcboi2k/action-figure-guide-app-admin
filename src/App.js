@@ -2,11 +2,11 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Home from './pages/Home';
-import BA20132014 from './pages/pageBA20132014';
-import BA20142015 from './pages/pageBA20142015';
-import BA20152017 from './pages/pageBA20152017';
-import EX20142015 from './pages/pageEX20142015';
-import MU20152017 from './pages/pageMU20152017';
+import BA20132014 from './pages/PageBA20132014';
+import BA20142015 from './pages/PageBA20142015';
+import BA20152017 from './pages/PageBA20152017';
+import EX20142015 from './pages/PageEX20142015';
+import MU20152017 from './pages/PageMU20152017';
 
 function App() {
   return (
