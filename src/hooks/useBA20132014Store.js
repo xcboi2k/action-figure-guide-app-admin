@@ -1,8 +1,9 @@
 import { db } from '../firebase';
 
-import {collection, getDocs, getDoc, addDoc, updateDoc, deleteDoc, doc} from 'firebase/firestore';
+import {collection, getDocs, getDoc, addDoc, updateDoc, deleteDoc, doc, query, orderBy} from 'firebase/firestore';
 
 const BA20132014Ref = collection(db, "BA20132014");
+const sortedBA20132014Ref = query(BA20132014Ref, orderBy('figure_number'));
 class useBA20132014Store {
     addBA20132014 = (newBA20132014) => {
         return addDoc(BA20132014Ref, newBA20132014);
@@ -19,7 +20,7 @@ class useBA20132014Store {
     };
 
     getAllBA20132014 = () => {
-        return getDocs(BA20132014Ref);
+        return getDocs(sortedBA20132014Ref);
     };
 
     getBA20132014 = (id) => {
