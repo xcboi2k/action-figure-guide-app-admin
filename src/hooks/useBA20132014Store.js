@@ -1,32 +1,29 @@
-import { db } from '../firebase';
+import { create } from 'zustand';
 
-import {collection, getDocs, getDoc, addDoc, updateDoc, deleteDoc, doc, query, orderBy} from 'firebase/firestore';
+import { addDoc, collection, serverTimestamp, deleteDoc, doc, updateDoc, getDoc } from 'firebase/firestore';
 
-const BA20132014Ref = collection(db, "BA20132014");
-const sortedBA20132014Ref = query(BA20132014Ref, orderBy('figure_number'));
-class useBA20132014Store {
-    addBA20132014 = (newBA20132014) => {
-        return addDoc(BA20132014Ref, newBA20132014);
-    };
+import { db, storage } from '../../firebase.config';
 
-    updateBA20132014 = (id, updatedBA20132014) => {
-        const docRef = doc(db, "BA20132014", id);
-        return updateDoc(docRef, updatedBA20132014);
-    };
+const BA20132014Store = (set, get) => ({
+    figures: [],
+    reset: () => set({ figures: [] }),
+    setFigures: (data) => set({ figures: data }),
+    addFigure: async(newFigure) => {
+        try {
+            console.log(newFigure);
 
-    deleteBA20132014 = (id) => {
-        const docRef = doc(db, "BA20132014", id);
-        return deleteDoc(docRef);
-    };
+            await addDoc(collection(db, 'BA20132014'), {
+                ...newFigure,
+                timestamp: serverTimestamp()
+            });
 
-    getAllBA20132014 = () => {
-        return getDocs(sortedBA20132014Ref);
-    };
+            console.log('NEW DOCUMENT CREATED');
+        } catch (err) {
+            console.log('addFigureError:', err);
+        }
+    },
+    updateFigure: () => {},
+    deleteFigure: () => {},
+});
 
-    getBA20132014 = (id) => {
-        const docRef = doc(db, "BA20132014", id);
-        return getDoc(docRef);
-    }
-}
-
-export default new useBA20132014Store();
+export const useBA20132014Store = create(BA20132014Store);
