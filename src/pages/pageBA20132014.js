@@ -3,7 +3,7 @@ import { Button, Container, Navbar, Row, Col, Image } from "react-bootstrap";
 import { Link, useNavigate} from 'react-router-dom';
 
 import AddBA20132014 from '../components/AddBA20132014';
-import ListBA20132014 from '../components/ListBA20132014';
+import ActionFigureList from '../components/shared/ActionFigureList';
 
 import homePageLogo from '../assets/img/welcomePageLogo.png'
 import homeIcon from '../assets/img/homeIcon.png'
@@ -40,7 +40,7 @@ const PageBA20132014 = () => {
       <Container>
         <Row>
           <Col>
-            <ListBA20132014 getFigureID={getFigureIDHandler}/>
+            <ActionFigureList></ActionFigureList>
           </Col>
         </Row>
       </Container>

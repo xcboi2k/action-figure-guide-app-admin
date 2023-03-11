@@ -2,7 +2,7 @@ import { create } from 'zustand';
 
 import { addDoc, collection, serverTimestamp, deleteDoc, doc, updateDoc, getDoc } from 'firebase/firestore';
 
-import { db, storage } from '../../firebase.config';
+import { db, storage } from '../firebase'
 
 const BA20132014Store = (set, get) => ({
     figures: [],

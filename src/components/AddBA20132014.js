@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Form, Alert, InputGroup, Button } from "react-bootstrap";
 
 import { useFormik } from 'formik';
-
-import useBA20132014Store from '../hooks/useBA20132014Store';
+import { useBA20132014Store } from '../hooks/useBA20132014Store';
 
 const AddBA20132014 = ({id, setFigureID}) => {
     const addFigure = useBA20132014Store((state) => state.addFigure)
@@ -42,6 +41,9 @@ const AddBA20132014 = ({id, setFigureID}) => {
     
     return (
         <>
+            <div style={{marginTop:20}}>
+                <h1 style={{color: '#F1D00A', fontWeight: 'bold'}}>Add a Figure</h1>
+            </div>
             <div className="p-4 box">
                 <Form onSubmit={formik.handleSubmit}>
                     <Form.Group className="mb-3" controlId="formFigureNumber">
