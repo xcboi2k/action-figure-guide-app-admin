@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Table, Container, Col, Row, Card} from "react-bootstrap";
 
-const ActionFigureList = () => {
+const ActionFigureList = ({figureList}) => {
     const figures = [
         {
             id: 1,
@@ -25,24 +25,19 @@ const ActionFigureList = () => {
 
     return (
         <>
-            <div style={{marginTop: 20, marginBottom: 25}}>
-                <h1 style={{color: '#F1D00A', fontWeight: 'bold'}}>Figure List</h1>
-            </div>
-            <Row>
-                {figures.map((figures) => {
-                    const {id, name, number, version} = figures;
+            <Row style={{marginTop: 20}}>
+                {figureList.map((figures) => {
+                    const {id, figure_name, figure_number, figure_version, photoUrl} = figures;
                     return(
-                        <Col className='d-flex'>
+                        <Col className='d-flex' xs={6} md={3}>
                         <Card className='flex-fill' key={id} 
-                        style={{ backgroundColor: '#243447', color: '#F0F0F0'}}>
-                            {/* <Card.Img variant='top' src='#' /> */}
+                        style={{ backgroundColor: '#243447', color: '#F0F0F0', marginBottom: 20}}>
+                            <Card.Img variant='top' src={photoUrl} style={{ objectFit: 'scale-down' }}/>
                             <Card.Body>
-                                <Card.Title>{number}</Card.Title>
-                                <Card.Title>{name}</Card.Title>
-                                <Card.Text>{version}</Card.Text>
+                                <Card.Text>{figure_number}</Card.Text>
+                                <Card.Title>{figure_name}</Card.Title>
+                                <Card.Text style={{ fontStyle: 'italic'}}>{figure_version}</Card.Text>
                                 <Button style={{ backgroundColor: '#F1D00A', borderColor: '#F1D00A', color: '#243447', fontWeight: 'bold', marginRight: 10}}>Edit</Button>
-                                <Button variant='danger' 
-                                style={{ color: '#243447', fontWeight: 'bold'}}>Delete</Button>
                             </Card.Body>
                         </Card>
                     </Col>
