@@ -1,28 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import { Button, Table, Container, Col, Row, Card} from "react-bootstrap";
 
 const ActionFigureList = ({figureList}) => {
-    const figures = [
-        {
-            id: 1,
-            number: "1",
-            name: "Jabba",
-            version: "Return of the Jedi",
-        },
-        {
-            id: 2,
-            number: "2",
-            name: "Anakin Skywalker",
-            version: "Revenge of the Sith",
-        },
-        {
-            id: 3,
-            number: "3",
-            name: "Darth Vader",
-            version: "The Empire Strikes Back",
-        }
-    ];
-
     return (
         <>
             <Row style={{marginTop: 20}}>
@@ -37,7 +17,10 @@ const ActionFigureList = ({figureList}) => {
                                 <Card.Text>{figure_number}</Card.Text>
                                 <Card.Title>{figure_name}</Card.Title>
                                 <Card.Text style={{ fontStyle: 'italic'}}>{figure_version}</Card.Text>
-                                <Button style={{ backgroundColor: '#F1D00A', borderColor: '#F1D00A', color: '#243447', fontWeight: 'bold', marginRight: 10}}>Edit</Button>
+                                <Link to={`/editBA20132014/${id}`}>
+                                    <Button style={{ backgroundColor: '#F1D00A', borderColor: '#F1D00A', color: '#243447', fontWeight: 'bold', marginRight: 10}}
+                                    >Edit</Button>
+                                </Link>
                             </Card.Body>
                         </Card>
                     </Col>

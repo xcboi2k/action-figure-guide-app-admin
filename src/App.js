@@ -7,6 +7,7 @@ import BA20142015 from './pages/PageBA20142015';
 import BA20152017 from './pages/PageBA20152017';
 import EX20142015 from './pages/PageEX20142015';
 import MU20152017 from './pages/PageMU20152017';
+import EditBA20132014 from './pages/EditBA20132014';
 
 function App() {
   return (
@@ -20,11 +21,11 @@ function App() {
           <Route path='/addEX20142015' element={<EX20142015 />}/>
           <Route path='/addMU20152017' element={<MU20152017 />}/>
 
-          <Route path='/updateBA20132014/:id' element={<BA20132014 />}/>
-          <Route path='/updateBA20142015/:id' element={<BA20142015 />}/>
-          <Route path='/updateBA20152017/:id' element={<BA20152017 />}/>
-          <Route path='/updateEX20142015/:id' element={<EX20142015 />}/>
-          <Route path='/updateMU20152017/:id' element={<MU20152017 />}/>
+          <Route path='/editBA20132014/:id' element={<EditBA20132014 />}/>
+          <Route path='/editBA20142015/:id' element={<BA20142015 />}/>
+          <Route path='/editBA20152017/:id' element={<BA20152017 />}/>
+          <Route path='/editEX20142015/:id' element={<EX20142015 />}/>
+          <Route path='/editMU20152017/:id' element={<MU20152017 />}/>
         </Routes>
       </div>
     </BrowserRouter>

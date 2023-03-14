@@ -14,7 +14,7 @@ const BA20132014Store = (set, get) => ({
         try {
             let fileUrl, fileRefName;
             if (currentFile) {
-                fileRefName = `users/${uuidv4()}-${currentFile.name}`;
+                fileRefName = `BA20132014/${uuidv4()}-${currentFile.name}`;
                 const imageRef = ref(storage, fileRefName);
 
                 const fileUpload = await uploadBytes(imageRef, currentFile);
@@ -36,8 +36,78 @@ const BA20132014Store = (set, get) => ({
             console.log('addFigureError:', err);
         }
     },
-    updateFigure: () => {},
-    deleteFigure: () => {},
+    updateFigure: async(documentId, updatedFigure, newFile) => {
+        // const editLoader = toast.loading('Updating Transaction');
+        try{
+            const docRef = doc(db, 'BA20132014', documentId);
+            const currentFigureResponse = await getDoc(docRef);
+            const currentFigure = currentFigureResponse.data();
+
+            // UPDATE THE FILES
+            // UPLOAD IMAGE
+            const fileRef = ref(storage, currentFigure.photoRef);
+            let fileUrl, fileRefName;
+            if (currentFigure.photoUrl !== newFile?.source) {
+                if (currentFigure.photoUrl !== '') {
+                    // DELETE THE OBJECT
+                    await deleteObject(fileRef);
+                }
+
+                if (newFile) {
+                    {
+                        fileRefName = `BA20132014/${uuidv4()}-${newFile.file.name}`;
+                        const imageRef = ref(storage, fileRefName);
+
+                        const fileUpload = await uploadBytes(imageRef, newFile.file);
+                        fileUrl = await getDownloadURL(fileUpload.ref);
+                        console.log('UPLOADED');
+                    }
+                }
+            }
+            // CREATE A REFERENCE TO THE DOCUMENT AND THE FILE
+            await updateDoc(docRef, {
+                ...updatedFigure,
+                photoRef: fileRefName || currentFigure.photoRef,
+                photoUrl: fileUrl || currentFigure.photoUrl
+            });
+
+            // toast.success('Updated Successfully.');
+
+            return true;
+        } catch (err) {
+            console.log('updateFigureError:', err);
+            // toast.error(err.message);
+
+            return false;
+        } finally {
+            // toast.dismiss(editLoader);
+        }
+    },
+    deleteFigure: async(documentId, fileReference) => {
+        console.log('Delete', documentId);
+        // const deleteLoader = toast.loading('Deleting Transaction');
+        // CREATE A REFERENCE FOR THE DOCUMENT AND THE FILE
+        const docRef = doc(db, 'BA20132014', documentId);
+        const fileRef = ref(storage, fileReference);
+        try {
+
+            // DELETE THE DOCUMENT AND OBJECT
+            await deleteDoc(docRef);
+            if (fileReference) {
+                await deleteObject(fileRef);
+            }
+            // ALERT A MESSAGE
+
+            // toast.success('Deleted Successfully!');
+
+            return true;
+        } catch (err) {
+            console.log('deleteFigureError:', err);
+            // toast.error(err.message);
+        } finally {
+            // toast.dismiss(deleteLoader);
+        }
+    },
 });
 
 export const useBA20132014Store = create(BA20132014Store);
