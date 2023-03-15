@@ -2,19 +2,22 @@ import React, { useState } from 'react'
 import { Button, Container, Navbar, Row, Col, Image } from "react-bootstrap";
 import { Link, useNavigate} from 'react-router-dom';
 
-import AddBA20132014 from '../components/AddBA20132014';
-import ListBA20132014 from '../components/ListBA20132014';
+import AddBA20132014Head from '../components/AddBA20132014Head';
+import BA20132014FigureList from '../components/shared/BA20132014FigureList';
+
+import { useBA20132014Store } from '../hooks/useBA20132014Store';
+import useGetBA20132014List from '../hooks/useGetBA20132014List';
 
 import homePageLogo from '../assets/img/welcomePageLogo.png'
 import homeIcon from '../assets/img/homeIcon.png'
 
 const PageBA20132014 = () => {
   const navigate = useNavigate();
-  const [figureID, setFigureID] = useState("");
 
-  const getFigureIDHandler = (id) => {
-    setFigureID(id);
-  }
+  const figureList = useBA20132014Store((state) => state.figures)
+
+  useGetBA20132014List();
+  
   return (
     <div style = {{height:"1000vh", backgroundColor: '#141D26'}}>
       <Navbar style={{backgroundColor: '#243447', borderColor: '#243447'}}>
@@ -33,14 +36,14 @@ const PageBA20132014 = () => {
       <Container>
         <Row>
           <Col>
-            <AddBA20132014 id={figureID} setFigureID={setFigureID}/>
+            <AddBA20132014Head />
           </Col>
         </Row>
       </Container>
       <Container>
         <Row>
           <Col>
-            <ListBA20132014 getFigureID={getFigureIDHandler}/>
+            <BA20132014FigureList figureList={figureList}></BA20132014FigureList>
           </Col>
         </Row>
       </Container>
