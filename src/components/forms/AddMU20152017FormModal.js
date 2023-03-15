@@ -198,7 +198,7 @@ export default function AddMU20152017FormModal({show, setShow}){
                             </Button>
                             <Container>
                                 <img
-                                src={selectedFile.source}
+                                src={selectedFile}
                                 alt=''
                                 style={{
                                     display: 'block',

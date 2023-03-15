@@ -276,7 +276,8 @@ const EditEX20142015 = () => {
 
                         <Form.Group className="mb-3">
                             <div style={{marginTop:20, display: 'flex', flexDirection: 'row'}}>
-                                <Button style={{ backgroundColor: '#F1D00A', borderColor: '#F1D00A', color: '#243447', fontWeight: 'bold', marginRight: 10}}>
+                                <Button style={{ backgroundColor: '#F1D00A', borderColor: '#F1D00A', color: '#243447', fontWeight: 'bold', marginRight: 10}}
+                                disabled={!isEditing}>
                                     <input
                                         type='file'
                                         onChange={handleFileSelect}

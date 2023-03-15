@@ -16,7 +16,7 @@ const MU20152017FigureList = ({figureList}) => {
                             <Card.Body>
                                 <Card.Text>{figure_number}</Card.Text>
                                 <Card.Title>{figure_name}</Card.Title>
-                                <Card.Text style={{ fontStyle: 'italic'}}>{figure_version}</Card.Text>
+                                <Card.Text style={{ fontStyle: 'italic'}}>({figure_version})</Card.Text>
                                 <Link to={`/editMU20152017/${id}`}>
                                     <Button style={{ backgroundColor: '#F1D00A', borderColor: '#F1D00A', color: '#243447', fontWeight: 'bold', marginRight: 10}}
                                     >Edit</Button>

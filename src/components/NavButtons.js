@@ -20,14 +20,14 @@ const NavButtons = () => {
                 <Button 
                     style={{marginRight: 10, backgroundColor: '#F1D00A', borderColor: '#F1D00A', color: '#243447', fontWeight: 'bold'}} 
                     onClick={() => navigate('/addBA20152017')}>
-                        Exclusives 2014-2015
+                        Basic Assortment 2015-2017
                 </Button>
             </Container>
             <Container>
                 <Button
                     style={{marginRight: 10, backgroundColor: '#F1D00A', borderColor: '#F1D00A', color: '#243447', fontWeight: 'bold'}} 
                     onClick={() => navigate('/addEX20142015')}>
-                        Basic Assortment 2015-2017
+                        Exclusives 2014-2015
                 </Button>
                 <Button
                     style={{marginRight: 10, backgroundColor: '#F1D00A', borderColor: '#F1D00A', color: '#243447', fontWeight: 'bold'}} 
