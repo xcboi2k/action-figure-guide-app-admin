@@ -3,7 +3,7 @@ import { Button, Container, Navbar, Row, Col, Image } from "react-bootstrap";
 import { Link, useNavigate} from 'react-router-dom';
 
 import AddBA20132014Head from '../components/AddBA20132014Head';
-import ActionFigureList from '../components/shared/ActionFigureList';
+import BA20132014FigureList from '../components/shared/BA20132014FigureList';
 
 import { useBA20132014Store } from '../hooks/useBA20132014Store';
 import useGetBA20132014List from '../hooks/useGetBA20132014List';
@@ -43,7 +43,7 @@ const PageBA20132014 = () => {
       <Container>
         <Row>
           <Col>
-            <ActionFigureList figureList={figureList}></ActionFigureList>
+            <BA20132014FigureList figureList={figureList}></BA20132014FigureList>
           </Col>
         </Row>
       </Container>

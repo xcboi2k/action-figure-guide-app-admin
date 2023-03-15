@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { Button, Table, Container, Col, Row, Card} from "react-bootstrap";
 
-const ActionFigureList = ({figureList}) => {
+const BA20132014FigureList = ({figureList}) => {
     return (
         <>
             <Row style={{marginTop: 20}}>
@@ -31,4 +31,4 @@ const ActionFigureList = ({figureList}) => {
     )
 }
 
-export default ActionFigureList
+export default BA20132014FigureList

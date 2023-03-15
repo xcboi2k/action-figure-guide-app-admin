@@ -186,7 +186,7 @@ export default function AddBA20132014FormModal({show, setShow}){
                                 />
                         </Form.Group>
 
-                        <Form.Group className="mb-3">
+                        <Form.Group className="mb-3" style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'row'}}>
                             <Button style={{ backgroundColor: '#F1D00A', borderColor: '#F1D00A', color: '#243447', fontWeight: 'bold', marginRight: 10}}>
                                 <input
                                     type='file'
@@ -196,6 +196,18 @@ export default function AddBA20132014FormModal({show, setShow}){
                                     ref={inputRef}
                                 />
                             </Button>
+                            <Container>
+                                <img
+                                src={selectedFile.source}
+                                alt=''
+                                style={{
+                                    display: 'block',
+                                    width: '100%',
+                                    height: '100%',
+                                    objectFit: 'fill'
+                                }}
+                                />
+                            </Container>
                         </Form.Group>
                     </Form>
                 </Modal.Body>

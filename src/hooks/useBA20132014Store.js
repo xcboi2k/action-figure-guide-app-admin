@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { v4 as uuidv4 } from 'uuid';
+import toast from 'react-hot-toast';
 
 import { addDoc, collection, serverTimestamp, deleteDoc, doc, updateDoc, getDoc } from 'firebase/firestore';
 
@@ -11,6 +12,7 @@ const BA20132014Store = (set, get) => ({
     reset: () => set({ figures: [] }),
     setFigures: (data) => set({ figures: data }),
     addFigure: async(newFigure, currentFile) => {
+        const loader = toast.loading('Adding Figure');
         try {
             let fileUrl, fileRefName;
             if (currentFile) {
@@ -31,13 +33,14 @@ const BA20132014Store = (set, get) => ({
                 timestamp: serverTimestamp()
             });
 
-            console.log('NEW DOCUMENT CREATED');
+            toast.dismiss(loader);
+            toast.success('Figure successfully added!');
         } catch (err) {
             console.log('addFigureError:', err);
         }
     },
     updateFigure: async(documentId, updatedFigure, newFile) => {
-        // const editLoader = toast.loading('Updating Transaction');
+        const editLoader = toast.loading('Updating Figure');
         try{
             const docRef = doc(db, 'BA20132014', documentId);
             const currentFigureResponse = await getDoc(docRef);
@@ -71,21 +74,21 @@ const BA20132014Store = (set, get) => ({
                 photoUrl: fileUrl || currentFigure.photoUrl
             });
 
-            // toast.success('Updated Successfully.');
+            toast.success('Updated Successfully.');
 
             return true;
         } catch (err) {
             console.log('updateFigureError:', err);
-            // toast.error(err.message);
+            toast.error(err.message);
 
             return false;
         } finally {
-            // toast.dismiss(editLoader);
+            toast.dismiss(editLoader);
         }
     },
     deleteFigure: async(documentId, fileReference) => {
         console.log('Delete', documentId);
-        // const deleteLoader = toast.loading('Deleting Transaction');
+        const deleteLoader = toast.loading('Deleting Figure');
         // CREATE A REFERENCE FOR THE DOCUMENT AND THE FILE
         const docRef = doc(db, 'BA20132014', documentId);
         const fileRef = ref(storage, fileReference);
@@ -98,14 +101,14 @@ const BA20132014Store = (set, get) => ({
             }
             // ALERT A MESSAGE
 
-            // toast.success('Deleted Successfully!');
+            toast.success('Deleted Successfully!');
 
             return true;
         } catch (err) {
             console.log('deleteFigureError:', err);
             // toast.error(err.message);
         } finally {
-            // toast.dismiss(deleteLoader);
+            toast.dismiss(deleteLoader);
         }
     },
 });

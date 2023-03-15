@@ -9,7 +9,10 @@ import EX20142015 from './pages/PageEX20142015';
 import MU20152017 from './pages/PageMU20152017';
 import EditBA20132014 from './pages/EditBA20132014';
 
+import useGetBA20132014List from './hooks/useGetBA20132014List';
+
 function App() {
+  useGetBA20132014List();
   return (
     <BrowserRouter>
       <div className="App">

@@ -5,9 +5,10 @@ import { Link, useNavigate, useParams} from 'react-router-dom';
 import { useFormik } from 'formik';
 
 import { useBA20132014Store } from '../hooks/useBA20132014Store';
+import useGetBA20132014List from '../hooks/useGetBA20132014List';
 
 const EditBA20132014 = () => {
-    const { figureId } = useParams();
+    const { id } = useParams();
     const navigate = useNavigate();
 
     const inputRef = useRef(null);
@@ -67,7 +68,7 @@ const EditBA20132014 = () => {
 
     const handleSubmit = (values) => {
         console.log(values);
-        updateFigure({ 
+        updateFigure(id, { 
             figure_number: values.number,
             figure_name: values.name,
             figure_version: values.version,
@@ -76,7 +77,11 @@ const EditBA20132014 = () => {
             figure_joint_count: values.jointCount,
             figure_accessory_count: values.accessoryCount,
             figure_accessory_details: values.accessoryDetails,
-        }, selectedFile);
+        }, selectedFile).then((success) =>{
+            if (success) {
+                navigate('/');
+            }
+        });
         formik.resetForm();
         setSelectedFile('');
     };
@@ -87,7 +92,7 @@ const EditBA20132014 = () => {
     });
 
     const handleDelete = () => {
-        deleteFigure(figureId , currentFigure?.photoRef || '').then((success) => {
+        deleteFigure(id , currentFigure?.photoRef || '').then((success) => {
             if (success) {
                 navigate('/');
             }
@@ -96,8 +101,7 @@ const EditBA20132014 = () => {
 
     useEffect(() => {
         // GET THEN VALUES OF THE FIGURE
-        const current = figures.find((item) => item.id === figureId);
-        console.log(current)
+        const current = figures.find((item) => item.id === id);
 
         // SET THE VALUE OF THE FIELDS
         setSelectedFile(current.photoUrl);
@@ -113,7 +117,7 @@ const EditBA20132014 = () => {
         formik.setFieldValue('accessoryCount', current.figure_accessory_count);
         formik.setFieldValue('accessoryDetails', current.figure_accessory_details);
 
-    }, [figureId]);
+    }, [id]);
     
     return (
         <div style = {{height:"1000vh", backgroundColor: '#141D26'}}>
@@ -133,7 +137,7 @@ const EditBA20132014 = () => {
             <Container>
                 <Row>
                 <Col>
-                    <h1 style={{color: '#F1D00A', fontWeight: 'bold'}}>Update Figure</h1>
+                    <h1 style={{color: '#F1D00A', fontWeight: 'bold', marginTop: 20, marginBottom: 20}}>Update Figure</h1>
                     <Form onSubmit={handleSubmit}>
                         <Form.Group className="mb-3">
                             <InputGroup>
@@ -272,7 +276,7 @@ const EditBA20132014 = () => {
                         </Form.Group>
 
                         <Form.Group className="mb-3">
-                            <div style={{marginTop:20, display: 'flex', justifyContent: 'space-between', flexDirection: 'row'}}>
+                            <div style={{marginTop:20, display: 'flex', flexDirection: 'row'}}>
                                 <Button style={{ backgroundColor: '#F1D00A', borderColor: '#F1D00A', color: '#243447', fontWeight: 'bold', marginRight: 10}}>
                                     <input
                                         type='file'
@@ -282,15 +286,17 @@ const EditBA20132014 = () => {
                                         ref={inputRef}
                                     />
                                 </Button>
-                                <Image
-                                    src={selectedFile}
-                                    alt=''
-                                    style={{
-                                        display: 'block',
-                                        width: '100%',
-                                        height: '100%',
-                                        objectFit: 'fill'
-                                    }}/>
+                                <div style={{width: 200, height: 200}}>
+                                    <Image
+                                        src={selectedFile}
+                                        alt=''
+                                        style={{
+                                            display: 'block',
+                                            width: '100%',
+                                            height: '100%',
+                                            objectFit: 'fill'
+                                        }}/>
+                                </div>
                             </div>
                         </Form.Group>
 
@@ -298,7 +304,7 @@ const EditBA20132014 = () => {
                         {!isEditing ? (
                                 <>
                                     <Button
-                                        style={{backgroundColor: '#F1D00A', borderColor: '#F1D00A', color: '#243447', fontWeight: 'bold', flex: 1}}
+                                        style={{backgroundColor: '#F1D00A', borderColor: '#F1D00A', color: '#243447', fontWeight: 'bold', flex: 1, marginRight: 20}}
                                         onClick={() => setIsEditing(!isEditing)}
                                     >
                                         Edit
@@ -312,7 +318,7 @@ const EditBA20132014 = () => {
                             ) : (
                                 <>
                                     <Button
-                                        style={{backgroundColor: '#F1D00A', borderColor: '#F1D00A', color: '#243447', fontWeight: 'bold', flex: 1}}
+                                        style={{backgroundColor: '#F1D00A', borderColor: '#F1D00A', color: '#243447', fontWeight: 'bold', flex: 1, marginRight: 20}}
                                         onClick={formik.handleSubmit}>
                                         Save
                                     </Button>
