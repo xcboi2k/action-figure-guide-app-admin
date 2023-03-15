@@ -9,7 +9,7 @@ export default function useGetBA20132014List() {
 
     useEffect(() => {
         const figureColRef = collection(db, 'BA20132014');
-        const figureQuery = query(figureColRef);
+        const figureQuery = query(figureColRef, orderBy('figure_number'));
 
         const unsubscribe = onSnapshot(figureQuery, (snapshotData) => {
             const figures = [];
