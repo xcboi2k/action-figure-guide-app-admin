@@ -2,6 +2,9 @@ import React, { useRef, useState, useEffect } from 'react'
 import { Button, Container, Navbar, Row, Col, Image, Form, InputGroup } from "react-bootstrap";
 import { Link, useNavigate, useParams} from 'react-router-dom';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+
 import { useFormik } from 'formik';
 
 import { useEX20142015Store } from '../hooks/useEX20142015Store';
@@ -136,7 +139,12 @@ const EditEX20142015 = () => {
             <Container>
                 <Row>
                 <Col>
-                    <h1 style={{color: '#F1D00A', fontWeight: 'bold', marginTop: 20, marginBottom: 20}}>Update Figure</h1>
+                    <div style={{marginTop: 20, marginBottom: 20, display: 'flex', flexDirection: 'row'}}>
+                        <Button style={{marginRight: 20, backgroundColor: '#141D26', borderColor: '#141D26'}} onClick={() => navigate('/addEX20142015')}>
+                            <FontAwesomeIcon icon={faArrowLeft} color={ '#F1D00A' } size="2xl"/>
+                        </Button>
+                        <h1 style={{color: '#F1D00A', fontWeight: 'bold'}}>Update Figure</h1>
+                    </div>
                     <Form onSubmit={handleSubmit}>
                         <Form.Group className="mb-3">
                             <InputGroup>
