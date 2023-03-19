@@ -58,17 +58,6 @@ const EditBA20132014 = () => {
         window.removeEventListener('focus', focusBack);
     };
 
-    const initialValues = {
-        number: '',
-        name: '',
-        version: '',
-        dateStamp: '',
-        releaseDate: '',
-        jointCount: '',
-        accessoryCount: '',
-        accessoryDetails: ''
-    }
-
     const handleSubmit = (values) => {
         console.log(values);
         updateFigure(id, { 
@@ -89,6 +78,17 @@ const EditBA20132014 = () => {
         setSelectedFile('');
     };
 
+    const initialValues = {
+        number: '',
+        name: '',
+        version: '',
+        dateStamp: '',
+        releaseDate: '',
+        jointCount: '',
+        accessoryCount: '',
+        accessoryDetails: ''
+    }
+
     const formik = useFormik({    
         initialValues,
         onSubmit: handleSubmit
@@ -107,7 +107,7 @@ const EditBA20132014 = () => {
         const current = figures.find((item) => item.id === id);
 
         // SET THE VALUE OF THE FIELDS
-        setSelectedFile(current.photoUrl);
+        setSelectedFile({source: current?.photoUrl});
 
         setCurrentFigure(current);
 

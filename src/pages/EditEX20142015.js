@@ -106,7 +106,7 @@ const EditEX20142015 = () => {
         const current = figures.find((item) => item.id === id);
 
         // SET THE VALUE OF THE FIELDS
-        setSelectedFile(current.photoUrl);
+        setSelectedFile({source: current?.photoUrl});
 
         setCurrentFigure(current);
 
