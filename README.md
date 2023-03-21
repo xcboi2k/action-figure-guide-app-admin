@@ -5,4 +5,5 @@ FRONTEND:
 - React Bootstrap
 
 BACKEND:
+- Zustand
 - Firebase
