@@ -127,7 +127,7 @@ const EditMU20152017 = () => {
                 <Container>
                 <Row>
                     <Col>
-                    <Navbar.Brand style={{color: '#F0F0F0', fontWeight: 'bold'}}>Action Figure Guide App Admin</Navbar.Brand>
+                    <Navbar.Brand style={{color: '#F0F0F0', fontWeight: 'bold'}}>Star Wars Collectibles Companion</Navbar.Brand>
                     <Link to="/" style={{marginLeft: 10, color: '#F1D00A'}}>
                         Home
                     </Link>

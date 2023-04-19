@@ -10,7 +10,7 @@ const Home = () => {
             <Navbar style={{backgroundColor: '#243447', borderColor: '#243447'}}>
                 <Container>
                     <Row>
-                        <Navbar.Brand style={{color: '#F0F0F0', fontWeight: 'bold'}}>Action Figure Guide App Admin</Navbar.Brand>
+                        <Navbar.Brand style={{color: '#F0F0F0', fontWeight: 'bold'}}>Star Wars Collectibles Companion</Navbar.Brand>
                     </Row>
                 </Container>
             </Navbar>
